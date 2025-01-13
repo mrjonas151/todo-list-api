@@ -113,6 +113,8 @@ Com o backend e o frontend configurados e em execução, você poderá acessar a
 
 ## 📚 API Endpoints
 
+## URL Completa = Base URL + URL Complementar
+
 ### Base URL
 http://localhost:8080/ (Porta 8080 como configuramos, caso contrário adicione sua porta específica)
 
@@ -122,6 +124,8 @@ Descrição: Retorna uma lista de todas as tarefas cadastradas.
 Resposta:  
 200 OK: Lista de tarefas no formato JSON.  
 
+URL: http://localhost:8080/tasks  
+
 ### Buscar tarefa por ID (URL COMPLEMEMENTAR: /tasks/{id})
 Método: GET  
 Descrição: Retorna uma tarefa específica com base no ID fornecido.  
@@ -129,6 +133,8 @@ Parâmetro -> id (Long): ID da tarefa.
 Resposta:  
 200 OK: Objeto da tarefa no formato JSON.  
 404 Not Found: Caso a tarefa não seja encontrada.  
+
+URL: http://localhost:8080/tasks/{id}  
 
 ### Criar uma nova tarefa (URL COMPLEMEMENTAR: /tasks)
 Método: POST  
@@ -144,6 +150,8 @@ Corpo da Requisição como exemplo:
 ```
 Resposta:  
 200 OK: Objeto da tarefa criada no formato JSON.  
+
+URL: http://localhost:8080/tasks  
 
 
 ### Atualizar uma tarefa existente (URL COMPLEMEMENTAR: /tasks/{id})
@@ -165,6 +173,8 @@ Resposta:
 200 OK: Objeto da tarefa atualizada no formato JSON.  
 404 Not Found: Caso a tarefa não seja encontrada.  
 
+URL: http://localhost:8080/tasks/{id}  
+
 ### Deletar uma tarefa (URL COMPLEMEMENTAR: /tasks/{id})
 Método: DELETE  
 Descrição: Remove uma tarefa com base no ID fornecido.  
@@ -172,6 +182,8 @@ Parâmetro-> id (Long): ID da tarefa.
 Resposta:  
 200 OK: Caso a tarefa seja removida com sucesso.  
 404 Not Found: Caso a tarefa não seja encontrada.  
+
+URL: http://localhost:8080/tasks/{id}   
 
 ## 🛠️ Construído com
 
