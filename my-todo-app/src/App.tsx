@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import { ThemeContext } from './context/ThemeContext';
+import { useContext } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ConfirmModal from './components/ConfirmModal';
+
 
 interface Task {
   id: number;
@@ -10,13 +16,22 @@ interface Task {
 }
 
 const App: React.FC = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState<{ title: string; description: string; status: Task['status'] }>({ title: '', description: '', status: 'NOT_STARTED' });
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false);
+  const [deleteModal, setDeleteModal] = useState<{
+    isOpen: boolean;
+    taskId: number | null;
+  }>({ isOpen: false, taskId: null });
 
   const API_URL = 'http://localhost:8080/tasks';
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   useEffect(() => {
     fetchTasks();
@@ -28,6 +43,7 @@ const App: React.FC = () => {
       const response = await axios.get<Task[]>(API_URL);
       setTasks(response.data);
     } catch (error) {
+      toast.error('Erro ao carregar tarefas');
       console.error('Erro ao carregar tarefas:', error);
     } finally {
       setLoading(false);
@@ -36,7 +52,7 @@ const App: React.FC = () => {
 
   const createTask = async () => {
     if (!newTask.title.trim() || !newTask.description.trim()) {
-      alert('Por favor, preencha todos os campos');
+      toast.warning('Por favor, preencha todos os campos');
       return;
     }
 
@@ -44,22 +60,32 @@ const App: React.FC = () => {
       const response = await axios.post<Task>(API_URL, newTask);
       setTasks([...tasks, response.data]);
       setNewTask({ title: '', description: '', status: 'NOT_STARTED' });
-      await fetchTasks(); //uso o await pra garantir que a lista de tarefas seja atualizada antes de continuar
+      await fetchTasks();
+      toast.success('Tarefa criada com sucesso!');
     } catch (error) {
+      toast.error('Erro ao criar tarefa');
       console.error('Erro ao criar tarefa:', error);
     }
   };
 
-  const deleteTask = async (id: number) => {
-    if (!window.confirm('Tem certeza que deseja excluir esta tarefa?')) return;
+   const deleteTask = async (id: number) => {
+    setDeleteModal({ isOpen: true, taskId: id });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteModal.taskId) return;
     
     try {
-      await axios.delete(`${API_URL}/${id}`);
-      setTasks(tasks.filter(task => task.id !== id));
+      await axios.delete(`${API_URL}/${deleteModal.taskId}`);
+      setTasks(tasks.filter(task => task.id !== deleteModal.taskId));
       setSelectedTask(null);
-      await fetchTasks(); //recarrego a lista pois a tarefa foi excluída e preciso que atualize
+      await fetchTasks();
+      toast.success('Tarefa excluída com sucesso!');
     } catch (error) {
+      toast.error('Erro ao excluir tarefa');
       console.error('Erro ao deletar tarefa:', error);
+    } finally {
+      setDeleteModal({ isOpen: false, taskId: null });
     }
   };
 
@@ -72,8 +98,10 @@ const App: React.FC = () => {
       setTasks(tasks.map(task => task.id === id ? response.data : task));
       setSelectedTask(response.data);
       setEditMode(false);
-      await fetchTasks(); 
+      await fetchTasks();
+      toast.success('Tarefa atualizada com sucesso!');
     } catch (error) {
+      toast.error('Erro ao atualizar tarefa');
       console.error('Erro ao atualizar tarefa:', error);
     }
   };
@@ -93,9 +121,32 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        onClose={() => setDeleteModal({ isOpen: false, taskId: null })}
+        onConfirm={confirmDelete}
+        title="Confirmar exclusão"
+        message="Tem certeza que deseja excluir esta tarefa?"
+      />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={theme}
+      />
       <header className="app-header">
         <h1>Gerenciador de tarefas cotidianas</h1>
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === 'light' ? '🌙' : '☀️'}
+        </button>
       </header>
 
       <div className="task-container">
