@@ -44,7 +44,7 @@ Para rodar o frontend em React, verifique se o Node.js está instalado. Para iss
 node -v
 ```
 
-### 🔧 Installation
+### 🔧 Instalação
 
 Uma série de exemplos passo a passo para configurar o ambiente de desenvolvimento e rodar a aplicação:
 
@@ -110,6 +110,68 @@ npm run dev
 ```
 
 Com o backend e o frontend configurados e em execução, você poderá acessar a aplicação no navegador pelo link fornecido pelo terminal do frontend. Certifique-se de que o backend está ativo antes de testar as funcionalidades da aplicação.
+
+## 📚 API Endpoints
+
+### Base URL
+http://localhost:8080/ (Porta 8080 como configuramos, caso contrário adicione sua porta específica)
+
+### Listar todas as tarefas (URL COMPLEMEMENTAR: /tasks)
+Método: GET  
+Descrição: Retorna uma lista de todas as tarefas cadastradas.  
+Resposta:  
+200 OK: Lista de tarefas no formato JSON.  
+
+### Buscar tarefa por ID (URL COMPLEMEMENTAR: /tasks/{id})
+Método: GET  
+Descrição: Retorna uma tarefa específica com base no ID fornecido.  
+Parâmetro -> id (Long): ID da tarefa.  
+Resposta:  
+200 OK: Objeto da tarefa no formato JSON.  
+404 Not Found: Caso a tarefa não seja encontrada.  
+
+### Criar uma nova tarefa (URL COMPLEMEMENTAR: /tasks)
+Método: POST  
+Descrição: Cria uma nova tarefa.  
+Corpo da Requisição como exemplo:  
+
+```
+{
+  "title": "Estudar Engenharia de Software",
+  "description": "Estudar os conceitos básicos da Engenharia de Software",
+  "status": "NOT_STARTED"
+}
+```
+Resposta:  
+200 OK: Objeto da tarefa criada no formato JSON.  
+
+
+### Atualizar uma tarefa existente (URL COMPLEMEMENTAR: /tasks/{id})
+Método: PUT  
+Descrição: Atualiza uma tarefa existente com base no ID fornecido.  
+Parâmetro -> id (Long): ID da tarefa.  
+
+Corpo da Requisição como exemplo:  
+
+```
+{
+  "title": "Estudar Engenharia de Software",
+  "description": "Estudar os conceitos básicos da Engenharia de Software",
+  "status": "IN_PROGRESS"
+}
+```
+
+Resposta:  
+200 OK: Objeto da tarefa atualizada no formato JSON.  
+404 Not Found: Caso a tarefa não seja encontrada.  
+
+### Deletar uma tarefa (URL COMPLEMEMENTAR: /tasks/{id})
+Método: DELETE  
+Descrição: Remove uma tarefa com base no ID fornecido.  
+Parâmetro-> id (Long): ID da tarefa.  
+Resposta:  
+200 OK: Caso a tarefa seja removida com sucesso.  
+404 Not Found: Caso a tarefa não seja encontrada.  
 
 ## 🛠️ Construído com
 
