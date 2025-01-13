@@ -1,7 +1,7 @@
-package com.todo_list_api.controller;
+package com.example.todo_list_api.controller;
 
-import com.todo_list_api.model.Task;
-import com.todo_list_api.service.TaskService;
+import com.example.todo_list_api.model.Task;
+import com.example.todo_list_api.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

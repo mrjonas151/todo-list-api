@@ -1,4 +1,4 @@
-package com.example.todo_list_api.Model;
+package com.example.todo_list_api.model;
 
 import jakarta.persistence.*;
 

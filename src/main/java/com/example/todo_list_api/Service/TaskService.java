@@ -1,7 +1,7 @@
-package com.todo_list_api.service;
+package com.example.todo_list_api.service;
 
-import com.todo_list_api.model.Task;
-import com.todo_list_api.repository.TaskRepository;
+import com.example.todo_list_api.model.Task;
+import com.example.todo_list_api.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
