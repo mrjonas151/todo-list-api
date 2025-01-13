@@ -147,3 +147,57 @@ button:hover {
     background: #d4edda;
     color: #155724;
 }
+
+/* ...existing styles... */
+
+.task-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.task-item-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.task-title {
+    font-weight: 500;
+}
+
+.task-actions button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
