@@ -3,7 +3,7 @@
 
 **O App To Do List** é uma aplicação web desenvolvida com Spring Boot (Java 17) no backend e React no frontend. A aplicação permite que os usuários criem novas tarefas, visualizem todas as tarefas e visualizem detalhes de tarefas específicas, além de oferecer uma experiência em light ou dark mode.
 
-## Página principal em light mode:
+## ☀️ Página principal em light mode:
 
 ![image](https://github.com/user-attachments/assets/2716147c-f00d-40d6-b8fa-b84d84aa4b2f)
 
@@ -13,7 +13,7 @@
 
 ![image](https://github.com/user-attachments/assets/9bf70e80-763f-4198-acae-147f6e3fa102)
 
-## Página principal em dark mode:
+## 🌑 Página principal em dark mode:
 
 ![image](https://github.com/user-attachments/assets/47d5de6e-ce11-4d97-81b2-779fba6c3137)
 
