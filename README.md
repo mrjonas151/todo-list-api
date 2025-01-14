@@ -185,6 +185,31 @@ Resposta:
 
 URL: http://localhost:8080/tasks/{id}   
 
+## 🚢 Rodando com Docker  
+*Para rodar a aplicação utilizando Docker, siga os passos abaixo  
+
+1-> Certifique-se de que o Docker está instalado em sua máquina  
+Para verificar se o Docker está instalado corretamente, execute o seguinte comando no terminal:  
+
+```
+docker --version
+```
+
+2-> Construa e suba os containers.  
+Com o Docker instalado, você pode usar o Docker Compose para facilitar o processo de build, já deixei configurado e basta apenas fazer a execução do código de múltiplos containers (frontend, backend e banco de dados).  
+
+```
+docker-compose up --build
+```
+
+3-> Altere o link de acesso ao BD nas properties:
+![image](https://github.com/user-attachments/assets/88c31a3e-5fc1-4c89-b77a-ad817d86fbde)  
+OBS: No caso da utilização do docker, comentar o bd local e descomentar o do docker no arquivo application.properties.
+
+4-> Acesse a aplicação
+Frontend: Depois de os containers estarem em execução, acesse a aplicação no navegador através de http://localhost:5173.  
+Backend: A API estará disponível em http://localhost:8080  
+
 ## 🛠️ Construído com
 
 * [React Vite] - Biblioteca utilizada para o desenvolvimento da interface web.
